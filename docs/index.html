@@ -61,13 +61,13 @@
       <p id="who" class="who"></p>
       <p id="role" class="role"></p>
       <span class="where">
-        <a id="where">Qui</a> (<p id="when"></p>)
+        <a id="where">Qui</a> (<p id="when" style="display: inline"></p>)
       </span> 
 
       <py-script>
         import pandas as pd
         from pyodide.http import open_url
-        data = pd.read_csv(open_url("https://raw.githubusercontent.com/g8a9/questovirgolettatoesiste/main/data.csv?token=GHSAT0AAAAAABY2RAVNFXH4BZHMM2BPZO5MY2VZLRQ"))
+        data = pd.read_csv(open_url("https://raw.githubusercontent.com/g8a9/questovirgolettatoesiste/main/data.csv?token=GHSAT0AAAAAABY2RAVMWKQMYYAQLYVLJGDQY2V3TNQ"))
         sample = data.sample(n=1)
         Element("cit").write(f'"{sample.iloc[0].cit}"')
         Element("who").write(sample.iloc[0].who)
