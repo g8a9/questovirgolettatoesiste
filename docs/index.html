@@ -60,7 +60,9 @@
       <p id="cit" class="cit"></p>
       <p id="who" class="who"></p>
       <p id="role" class="role"></p>
-      <a id="where" class="where">Qui</a>
+      <span class="where">
+        <a id="where">Qui</a> (<p id="when"></p>)
+      </span> 
 
       <py-script>
         import pandas as pd
@@ -71,6 +73,7 @@
         Element("who").write(sample.iloc[0].who)
         Element("role").write(sample.iloc[0].role)
         Element("where").element.href = sample.iloc[0]["where"]
+        Element("when").write(sample.iloc[0]["when"])
       </py-script>
     </main>
 
