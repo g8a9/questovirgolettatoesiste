@@ -57,18 +57,20 @@
     </header>
 
     <main role="main" class="inner cover">
-      <h1 id="cit" class="cover-heading"></h1>
-      <h2 id="who"></h2>
-      <h3 id="role"></h3>
+      <p id="cit" class="cit"></p>
+      <p id="who" class="who"></p>
+      <p id="role" class="role"></p>
+      <a id="where" class="where">Qui</a>
 
       <py-script>
         import pandas as pd
         from pyodide.http import open_url
-        data = pd.read_csv(open_url("https://raw.githubusercontent.com/g8a9/questovirgolettatoesiste/main/data.csv?token=GHSAT0AAAAAABY2RAVNDXRUCR4BX25U7CJKY2VMZOQ"))
+        data = pd.read_csv(open_url("https://raw.githubusercontent.com/g8a9/questovirgolettatoesiste/main/data.csv?token=GHSAT0AAAAAABY2RAVNFXH4BZHMM2BPZO5MY2VZLRQ"))
         sample = data.sample(n=1)
-        pyscript.write("cit", f'"{sample.iloc[0].cit}"')
-        pyscript.write("who", f'{sample.iloc[0].who}')
-        pyscript.write("role", f'{sample.iloc[0].role}')
+        Element("cit").write(f'"{sample.iloc[0].cit}"')
+        Element("who").write(sample.iloc[0].who)
+        Element("role").write(sample.iloc[0].role)
+        Element("where").element.href = sample.iloc[0]["where"]
       </py-script>
     </main>
 

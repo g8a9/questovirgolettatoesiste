@@ -21,6 +21,28 @@ a:hover {
 }
 
 
+.cit {
+  font-size: 1.75rem;
+  font-weight: 300;
+  text-align: left;
+}
+
+.who {
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: red;
+  margin-top: 2rem;
+  margin-bottom: 0rem;
+}
+
+.role {
+  font-size: 1.75rem;
+  font-weight: 100;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+}
+
+
 /*
  * Base structure
  */
