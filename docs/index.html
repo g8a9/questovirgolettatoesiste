@@ -35,7 +35,11 @@
 
   <!-- Custom styles for this template -->
   <link href="cover.css" rel="stylesheet">
-  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <py-env>
+    - pandas
+  </py-env>
 </head>
 
 <body class="text-center">
@@ -53,13 +57,15 @@
     </header>
 
     <main role="main" class="inner cover">
-      <h1 class="cover-heading">"Io sono una femminista. Le femministe non hanno mai considerato l'aborto un diritto"
-      </h1>
-      <h2>Eugenia Roccella</h2>
-      <h3>Ministro della famiglia, natalità e pari opportunità</h3>
+      <h1 id="cit" class="cover-heading">"Io sono una femminista. Le femministe non hanno mai considerato l'aborto un diritto"</h1>
+      <h2 id="who">Eugenia Roccella</h2>
+      <h3 id="job">Ministro della famiglia, natalità e pari opportunità</h3>
 
       <py-script>
-        print("Testing pyscript")
+        import pandas as pd
+        data = pd.read_csv("data.csv")
+        print(data.shape)
+        print(data.columns)
       </py-script>
     </main>
 
