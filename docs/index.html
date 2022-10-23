@@ -57,15 +57,18 @@
     </header>
 
     <main role="main" class="inner cover">
-      <h1 id="cit" class="cover-heading">"Io sono una femminista. Le femministe non hanno mai considerato l'aborto un diritto"</h1>
-      <h2 id="who">Eugenia Roccella</h2>
-      <h3 id="job">Ministro della famiglia, natalità e pari opportunità</h3>
+      <h1 id="cit" class="cover-heading"></h1>
+      <h2 id="who"></h2>
+      <h3 id="role"></h3>
 
       <py-script>
         import pandas as pd
-        data = pd.read_csv("data.csv")
-        print(data.shape)
-        print(data.columns)
+        from pyodide.http import open_url
+        data = pd.read_csv(open_url("https://raw.githubusercontent.com/g8a9/questovirgolettatoesiste/main/data.csv?token=GHSAT0AAAAAABY2RAVNDXRUCR4BX25U7CJKY2VMZOQ"))
+        sample = data.sample(n=1)
+        pyscript.write("cit", f'"{sample.iloc[0].cit}"')
+        pyscript.write("who", f'{sample.iloc[0].who}')
+        pyscript.write("role", f'{sample.iloc[0].role}')
       </py-script>
     </main>
 
