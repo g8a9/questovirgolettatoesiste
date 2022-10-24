@@ -60,34 +60,35 @@
       <p id="cit" class="cit"></p>
       <p id="who" class="who"></p>
       <p id="role" class="role"></p>
-      <span class="where">
+      <div class="where">
         <a id="where">Qui</a> (<p id="when" style="display: inline"></p>)
-      </span> 
+      </div>
+      <div class="divider"></div> 
+
+      <p id="cit-eng" class="cit-eng"></p>
 
       <py-script>
         import pandas as pd
         from pyodide.http import open_url
         data = pd.read_csv(open_url("https://raw.githubusercontent.com/g8a9/questovirgolettatoesiste/main/data.csv?token=GHSAT0AAAAAABY2RAVMWKQMYYAQLYVLJGDQY2V3TNQ"))
-        sample = data.sample(n=1)
-        Element("cit").write(f'"{sample.iloc[0].cit}"')
-        Element("who").write(sample.iloc[0].who)
-        Element("role").write(sample.iloc[0].role)
-        Element("where").element.href = sample.iloc[0]["where"]
-        Element("when").write(sample.iloc[0]["when"])
+        sample = data.sample(n=1).iloc[0]
+        Element("cit").write(f'"{sample.cit}"')
+        Element("who").write(sample.who)
+        Element("role").write(sample.role)
+        Element("where").element.href = sample["where"]
+        Element("when").write(sample["when"])
+        Element("cit-eng").write(f'"{sample["eng"]}"')
       </py-script>
-    </main>
 
-    <footer class="mastfoot mt-auto">
-      <div class="inner">
-        <p>Per imprecisioni, puoi prendertela con <a href="https://github.com/g8a9">g8a9</a>.</p>
-      </div>
-    </footer>
+      <p class="complaint">Per imprecisioni, puoi prendertela con <a href="https://github.com/g8a9">g8a9</a>.</p>
+    </main>
+    
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
     crossorigin="anonymous"></script>
-
-</body>
 
 </html>
