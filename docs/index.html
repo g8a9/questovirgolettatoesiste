@@ -70,7 +70,7 @@
       <py-script>
         import pandas as pd
         from pyodide.http import open_url
-        data = pd.read_csv(open_url("https://raw.githubusercontent.com/g8a9/questovirgolettatoesiste/main/data.csv?token=GHSAT0AAAAAABY2RAVMWKQMYYAQLYVLJGDQY2V3TNQ"))
+        data = pd.read_csv(open_url("https://raw.githubusercontent.com/g8a9/questovirgolettatoesiste/main/data.csv?token=GHSAT0AAAAAABY2RAVNRUHH5ADGGC2EYNOSY2WLQWQ"))
         sample = data.sample(n=1).iloc[0]
         Element("cit").write(f'"{sample.cit}"')
         Element("who").write(sample.who)
