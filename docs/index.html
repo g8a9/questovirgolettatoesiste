@@ -13,8 +13,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+  <!-- <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" /> -->
+  <!-- <script defer src="https://pyscript.net/latest/pyscript.js"></script> -->
+  <script src="papaparse.js"></script>
 
   <style>
     .bd-placeholder-img {
@@ -37,9 +38,9 @@
   <link href="cover.css" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <py-env>
+  <!-- <py-env>
     - pandas
-  </py-env>
+  </py-env> -->
 </head>
 
 <body class="text-center">
@@ -67,7 +68,7 @@
 
       <p id="cit-eng" class="cit-eng"></p>
 
-      <py-script>
+      <!-- <py-script>
         import pandas as pd
         from pyodide.http import open_url
         data = pd.read_csv(open_url("https://raw.githubusercontent.com/g8a9/questovirgolettatoesiste/main/data.csv"))
@@ -78,7 +79,7 @@
         Element("where").element.href = sample["where"]
         Element("when").write(sample["when"])
         Element("cit-eng").write(f'"{sample["eng"]}"')
-      </py-script>
+      </py-script> -->
 
       <p class="complaint">Per imprecisioni, puoi prendertela con <a href="https://github.com/g8a9">g8a9</a>.</p>
     </main>
@@ -87,10 +88,37 @@
   
   <script async src="//static.getclicky.com/101385219.js"></script>
 
+  <script>
+    let url = "https://raw.githubusercontent.com/g8a9/questovirgolettatoesiste/main/data.csv"
+    Papa.parse(url, {
+      download: true,
+      complete: results => {
+        idx = Math.floor(Math.random() * (results.data.length - 1)) + 1
+        console.log(idx);
+        // console.log(results)
+
+        cit = results.data[idx][0]
+        who = results.data[idx][1]
+        role = results.data[idx][2]
+        where = results.data[idx][3]
+        when = results.data[idx][4]
+        eng = results.data[idx][5]
+
+        document.getElementById("cit").innerHTML = cit
+        document.getElementById("who").innerHTML = who
+        document.getElementById("role").innerHTML = role
+        document.getElementById("where").href = where
+        document.getElementById("when").innerHTML = when
+        document.getElementById("cit-eng").innerHTML = eng
+      }
+    })
+
+  </script>
+
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script> -->
 
 </html>
