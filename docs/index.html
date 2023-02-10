@@ -87,13 +87,24 @@
   </div>
   
   <script async src="//static.getclicky.com/101385219.js"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DX6H03TT9C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DX6H03TT9C');
+  </script>
 
   <script>
     let url = "https://raw.githubusercontent.com/g8a9/questovirgolettatoesiste/main/data.csv"
     Papa.parse(url, {
       download: true,
       complete: results => {
-        idx = Math.floor(Math.random() * results.data.length)
+        console.log(results.data)
+        console.log(results.data.length)
+        idx = Math.floor(Math.random() * (results.data.length - 1)) + 1
         console.log(idx);
         // console.log(results)
 
