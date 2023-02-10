@@ -93,7 +93,7 @@
     Papa.parse(url, {
       download: true,
       complete: results => {
-        idx = Math.floor(Math.random() * (results.data.length - 1)) + 1
+        idx = Math.floor(Math.random() * results.data.length)
         console.log(idx);
         // console.log(results)
 
