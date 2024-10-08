@@ -1,135 +1,312 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="Giuseppe Attanasio">
-  <title>Questo Virgolettato Esiste</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/cover/">
+    <meta name="author" content="Giuseppe Attanasio">
+    <title>Questo Virgolettato Esiste</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <!-- <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" /> -->
-  <!-- <script defer src="https://pyscript.net/latest/pyscript.js"></script> -->
-  <script src="papaparse.js"></script>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            flex-direction: column;
+            margin: 0;
+        }
 
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
+        .container {
+            width: 40%;
+            margin: 10px auto;
+            text-align: center;
+        }
 
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
+        #cit {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
 
-  <!-- Custom styles for this template -->
-  <link href="cover.css" rel="stylesheet">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+        #who {
+            font-size: 1.5rem;
+            color: red;
+        }
 
-  <!-- <py-env>
-    - pandas
-  </py-env> -->
+        #role {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: white;
+        }
+
+        #where-when {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        #where-when a {
+            color: white;
+            text-decoration: none;
+        }
+
+        #eng-label {
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+            margin-top: 60px;
+        }
+
+        #eng {
+            font-size: 1rem;
+            font-weight: 300;
+            color: white;
+            border: 1px solid white;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #popup {
+            position: absolute;
+            bottom: 40px;
+            width: 80%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: black;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: none;
+            text-align: center;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #popup::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 10px;
+            border-style: solid;
+            border-color: rgba(255, 255, 255, 0.9) transparent transparent transparent;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Mobile-friendly styles */
+        @media (max-width: 768px) {
+            .container {
+                width: 80%; /* Make containers wider on smaller screens */
+            }
+
+            #cit {
+                font-size: 1.5rem; /* Decrease font size for mobile */
+                margin-bottom: 15px;
+            }
+
+            #who {
+                font-size: 1.2rem; /* Decrease font size for mobile */
+            }
+
+            #role {
+                font-size: 1rem;
+            }
+
+            #where-when {
+                font-size: 1rem;
+                margin-top: 8px;
+            }
+
+            #eng {
+                font-size: 0.9rem;
+                padding: 15px; /* Adjust padding for mobile */
+            }
+
+            footer {
+                font-size: 14px; /* Slightly smaller font in footer */
+            }
+
+            #popup {
+                width: 90%; /* Allow the popup to take more space on mobile */
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 90%; /* Make containers almost full-width on small screens */
+            }
+
+            #cit {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+            }
+
+            #who {
+                font-size: 1rem;
+            }
+
+            #role {
+                font-size: 0.9rem;
+            }
+
+            #where-when {
+                font-size: 0.9rem;
+                margin-top: 6px;
+            }
+
+            #eng {
+                font-size: 0.8rem;
+                padding: 10px; /* More compact padding */
+            }
+
+            footer {
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
+<body>
 
-<body class="text-center">
+    <div class="container" id="cit">Loading...</div>
+    <div class="container" id="who">Loading...</div>
+    <div class="container" id="role">Loading...</div>
+    <div class="container" id="where-when">Loading...</div>
 
-  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header class="masthead mb-auto">
-      <!-- <div class="inner">
-        <h3 class="masthead-brand">Questo virgolettato esiste</h3>
-        <nav class="nav nav-masthead justify-content-center">
-          <a class="nav-link active" href="#">Home</a>
-          <a class="nav-link" href="#">Features</a>
-          <a class="nav-link" href="#">Contact</a>
-        </nav>
-      </div> -->
-    </header>
+    <!-- "English" label -->
+    <div class="container" id="eng-label">English</div>
 
-    <main role="main" class="inner cover">
-      <p id="cit" class="cit"></p>
-      <p id="who" class="who"></p>
-      <p id="role" class="role"></p>
-      <div class="where">
-        <a id="where">Qui</a> (<p id="when" style="display: inline"></p>)
-      </div>
-      <div class="divider"></div> 
+    <div class="container" id="eng">Loading...</div>
 
-      <p id="cit-eng" class="cit-eng"></p>
+    <!-- Footer with clickable text -->
+    <footer>
+        <a id="whatIsThis" onclick="showPopup()">What is this website?</a>
+    </footer>
 
-      <!-- <py-script>
-        import pandas as pd
-        from pyodide.http import open_url
-        data = pd.read_csv(open_url("https://raw.githubusercontent.com/g8a9/questovirgolettatoesiste/main/data.csv"))
-        sample = data.sample(n=1).iloc[0]
-        Element("cit").write(f'"{sample.cit}"')
-        Element("who").write(sample.who)
-        Element("role").write(sample.role)
-        Element("where").element.href = sample["where"]
-        Element("when").write(sample["when"])
-        Element("cit-eng").write(f'"{sample["eng"]}"')
-      </py-script> -->
-
-      <p class="complaint">Per imprecisioni, puoi prendertela con <a href="https://github.com/g8a9">g8a9</a>.</p>
-    </main>
+    <!-- Popup element -->
+    <div id="popup">
+        This is a satirical website. In early 2019, the page <a href="https://thispersondoesnotexist.com" target="_blank">thispersondoesntexist.com</a> was launched, which displays a new AI-generated face every time you refresh the page.
+        This website is a parody of that concept, as it displays <strong>a true quote</strong> of a member of the current Italian government every time it is loaded.
+    </div>
     
-  </div>
-  
-  <script async src="//static.getclicky.com/101385219.js"></script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DX6H03TT9C"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
 
-    gtag('config', 'G-DX6H03TT9C');
-  </script>
+    <script src="script.js"></script>
 
-  <script>
-    let url = "https://raw.githubusercontent.com/g8a9/questovirgolettatoesiste/main/data.csv"
-    Papa.parse(url, {
-      download: true,
-      complete: results => {
-        console.log(results.data)
-        console.log(results.data.length)
-        idx = Math.floor(Math.random() * (results.data.length - 2)) + 1
-        console.log(idx);
-        // console.log(results)
+    <script>
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            if (popup.style.display === "none" || !popup.style.display) {
+                popup.style.display = "block";
+                popup.classList.add('fade-in');
+            }
+        }
 
-        cit = results.data[idx][0]
-        who = results.data[idx][1]
-        role = results.data[idx][2]
-        where = results.data[idx][3]
-        when = results.data[idx][4]
-        eng = results.data[idx][5]
+        // Close the popup when clicking anywhere outside of it
+        document.addEventListener('click', function(event) {
+            const popup = document.getElementById('popup');
+            const whatIsThis = document.getElementById('whatIsThis');
+            if (!popup.contains(event.target) && event.target !== whatIsThis) {
+                popup.style.display = "none";
+            }
+        });
 
-        document.getElementById("cit").innerHTML = cit
-        document.getElementById("who").innerHTML = who
-        document.getElementById("role").innerHTML = role
-        document.getElementById("where").href = where
-        document.getElementById("when").innerHTML = when
-        document.getElementById("cit-eng").innerHTML = eng
-      }
-    })
+        // Example data fetching and filling logic
+        async function fetchCSV() {
+            const response = await fetch('data.csv');
+            const data = await response.text();
+            return parseCSV(data);
+        }
 
-  </script>
+        function parseCSV(data) {
+            const lines = data.split('\n').filter(line => line.trim() !== '');
+            const headers = lines[0].split(',');
+            const rows = lines.slice(1);
+            return rows.map(row => {
+                const values = parseCSVRow(row);
+                const entry = {};
+                headers.forEach((header, index) => {
+                    entry[header.trim()] = values[index] ? values[index].trim() : '';
+                });
+                return entry;
+            });
+        }
+
+        function parseCSVRow(row) {
+            const regex = /("([^"]*(?:""[^"]*)*)"|[^,]+|(?<=,)(?=,))/g;
+            const result = [];
+            let match;
+            while ((match = regex.exec(row)) !== null) {
+                let value = match[0];
+                if (value.startsWith('"') && value.endsWith('"')) {
+                    value = value.slice(1, -1).replace(/""/g, '"');
+                }
+                result.push(value.trim());
+            }
+            return result;
+        }
+
+        function fillContainers(row) {
+            document.getElementById('cit').textContent = row['cit'];
+            document.getElementById('who').textContent = row['who'];
+            document.getElementById('role').textContent = row['role'];
+            document.getElementById('where-when').innerHTML = `Qui: <a href="${row['where']}" target="_blank" style="text-decoration: underline;">${row['when']}</a>`;
+            document.getElementById('eng').textContent = row['eng'];
+        }
+
+        async function loadRandomData() {
+            const data = await fetchCSV();
+            const randomRow = data[Math.floor(Math.random() * data.length)];
+            fillContainers(randomRow);
+        }
+
+        loadRandomData();
+    </script>
+
+    <script async src="//static.getclicky.com/101385219.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DX6H03TT9C"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-DX6H03TT9C');
+    </script>
 
 </body>
-
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-    crossorigin="anonymous"></script> -->
-
 </html>
